@@ -7,7 +7,7 @@ import { CookiesProvider } from "react-cookie";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import "@churchapps/apphelper/dist/markdown/components/markdownEditor/editor.css";
 import { EnvironmentHelper } from "./helpers";
-import { createAppTheme } from "./helpers/Themes";
+import { createHubPastoralTheme } from "./helpers/HubPastoralTheme";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./queryClient";
 import { DndProvider } from "react-dnd";
@@ -15,7 +15,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 const ThemedApp: React.FC = () => {
   const { mode, themeId, brandColor } = useThemeMode();
-  const theme = useMemo(() => createAppTheme(mode, themeId, brandColor), [mode, themeId, brandColor]);
+  const theme = useMemo(() => createHubPastoralTheme(mode, themeId, brandColor), [mode, themeId, brandColor]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -23,7 +23,6 @@ const ThemedApp: React.FC = () => {
       <QueryClientProvider client={queryClient}>
         <CookiesProvider defaultSetOptions={{ path: "/" }}>
           <UserProvider>
-            {/* Single app-lifetime backend: multiple DndProviders race on window.__isReactDndBackendSetUp ("Cannot have two HTML5 backends") */}
             <DndProvider backend={HTML5Backend}>
               <Router basename={import.meta.env.BASE_URL}>
                 <Routes>
