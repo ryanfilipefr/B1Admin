@@ -1,0 +1,160 @@
+{
+  "common": {
+    "add": "Adicionar",
+    "all": "Todos",
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "delete": "Excluir",
+    "duplicate": "Duplicar",
+    "edit": "Editar",
+    "email": "E-mail",
+    "error": "Erro",
+    "name": "Nome",
+    "notes": "Notas",
+    "pleaseWait": "Aguarde...",
+    "save": "Salvar",
+    "search": "Pesquisar",
+    "settings": "Configurações",
+    "status": "Status",
+    "submit": "Enviar",
+    "update": "Atualizar",
+    "website": "Site",
+    "mobile": "Aplicativo",
+    "sermons": "Sermões",
+    "noAccess": "Você não tem acesso a esta seção."
+  },
+  "controlPanel": {
+    "serverError": "Algo deu errado. Tente novamente."
+  },
+  "components": {
+    "wrapper": {
+      "dash": "Visão geral",
+      "ppl": "Pessoas",
+      "don": "Contribuições",
+      "serving": "Equipes e tarefas",
+      "set": "Configurações",
+      "att": "Presenças",
+      "groups": "Grupos",
+      "servAdmin": "Administração"
+    },
+    "loginHeroPanel": {
+      "title": "Gestão que serve pessoas",
+      "subtitle": "Uma central simples para organizar a rotina pastoral.",
+      "featurePeople": "Pessoas e famílias",
+      "featurePlanning": "Agenda e presenças",
+      "featureDonations": "Contribuições",
+      "featureWebsite": "Site e comunicação"
+    }
+  },
+  "dashboard": {
+    "dashboardPage": { "dash": "Visão geral" },
+    "myTasks": "Minhas tarefas",
+    "allTasks": "Ver todas",
+    "noOpenTasks": "Nenhuma tarefa aberta atribuída a você.",
+    "myGroups": "Meus grupos",
+    "allGroups": "Ver todos",
+    "noGroups": "Você ainda não participa de nenhum grupo.",
+    "needsAttention": {
+      "title": "Precisa de atenção",
+      "approvals": "{count} aprovação(ões) pendente(s)",
+      "joinRequests": "{count} solicitação(ões) para grupo"
+    }
+  },
+  "login": {
+    "continueGoogle": "Continuar com Google",
+    "continueMicrosoft": "Continuar com Microsoft",
+    "createAccount": "Criar conta",
+    "email": "E-mail",
+    "expiredLink": "Este link expirou.",
+    "forgot": "Esqueci minha senha",
+    "goLogin": "Ir para o login",
+    "login": "Entrar",
+    "password": "Senha",
+    "register": "Criar conta",
+    "registerThankYou": "Cadastro realizado. Verifique seu e-mail para confirmar a conta.",
+    "requestLink": "Solicitar novo link",
+    "reset": "Redefinir",
+    "resetInstructions": "Digite seu e-mail para solicitar a redefinição de senha.",
+    "resetPassword": "Redefinir senha",
+    "resetSent": "E-mail de redefinição enviado.",
+    "setPassword": "Definir senha",
+    "signIn": "Entrar",
+    "signInTitle": "Entre no HubPastoral",
+    "verifyPassword": "Confirmar senha",
+    "welcomeBack": "Bem-vindo de volta",
+    "validate": {
+      "email": "Digite um e-mail válido.",
+      "firstName": "Digite seu nome.",
+      "invalid": "E-mail ou senha inválidos.",
+      "lastName": "Digite seu sobrenome.",
+      "password": "Digite sua senha.",
+      "passwordLength": "A senha deve ter pelo menos 8 caracteres.",
+      "passwordMatch": "As senhas não coincidem.",
+      "selectingChurch": "Não foi possível selecionar a igreja. Verifique e tente novamente."
+    }
+  },
+  "wrapper": {
+    "logout": "Sair",
+    "messages": "Mensagens",
+    "notifications": "Notificações",
+    "profile": "Perfil",
+    "searchForPerson": "Pesquisar pessoa",
+    "support": "Ajuda",
+    "switchApp": "Trocar aplicativo",
+    "switchChurch": "Trocar igreja"
+  },
+  "attendance": {
+    "attendancePage": {
+      "att": "Presenças",
+      "serviceTimes": "Horários dos cultos",
+      "subtitle": "Acompanhe a frequência de cultos e grupos"
+    },
+    "attendanceSetup": {
+      "namedAttendanceHelp": "Para registrar presença nominal, abra o grupo e acesse Sessões. Esta página relaciona grupos aos horários dos cultos.",
+      "title": "Estrutura dos cultos"
+    },
+    "headcountEntry": {
+      "confirmDelete": "Tem certeza de que deseja excluir esta contagem?",
+      "count": "Contagem",
+      "date": "Data",
+      "group": "Grupo",
+      "noGroup": "Sem grupo (culto inteiro)",
+      "none": "Nenhuma contagem registrada. Use o formulário para informar quantas pessoas participaram do culto.",
+      "recent": "Contagens recentes",
+      "service": "Culto",
+      "serviceTime": "Horário do culto",
+      "title": "Registrar contagem",
+      "totalOnlyHint": "Esta é uma contagem total, não uma lista nominal. Registre quem participou na aba Sessões do grupo.",
+      "validate": {
+        "count": "Digite um número inteiro igual ou maior que zero.",
+        "date": "Escolha uma data.",
+        "service": "Selecione um culto."
+      },
+      "wholeService": "Todos os horários do culto"
+    },
+    "tabs": {
+      "headcountTrend": "Tendência de contagem"
+    }
+  },
+  "calendars": {
+    "calendarEvent": { "edit": "Editar" }
+  },
+  "tasks": {
+    "workflowsPage": {
+      "title": "Fluxos de trabalho",
+      "subtitle": "Organize processos recorrentes e acompanhe cada etapa.",
+      "category": "Categoria",
+      "status": "Status",
+      "categories": "Categorias",
+      "workflowCount": "{count} fluxos",
+      "noWorkflows": "Nenhum fluxo de trabalho ainda.",
+      "addWorkflow": "Novo fluxo",
+      "blankWorkflow": "Começar do zero"
+    }
+  },
+  "reports": {
+    "reportsPage": { "reports": "Relatórios" },
+    "reportPage": { "report": "Relatório" }
+  }
+}
