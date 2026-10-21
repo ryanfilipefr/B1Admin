@@ -5,7 +5,7 @@ import { Locale } from "@churchapps/apphelper";
 import { type UserInterface, type LoginUserChurchInterface } from "@churchapps/helpers";
 import UserContext from "./UserContext";
 import { LoginPage } from "@churchapps/apphelper/login";
-import { Alert } from "@mui/material";
+import { Alert, Box, Typography } from "@mui/material";
 import { LoginHeroPanel } from "./components/LoginHeroPanel";
 
 export const Login: React.FC = () => {
@@ -22,9 +22,7 @@ export const Login: React.FC = () => {
   React.useEffect(() => {
     if (forceLogin && !forceLoginCleared.current) {
       forceLoginCleared.current = true;
-      // Clear JWT cookie to force fresh login
       removeCookie("jwt", { path: "/" });
-      // Clear user context
       if (context) {
         context.setUser(null as unknown as UserInterface);
         context.setUserChurch(null as unknown as LoginUserChurchInterface);
@@ -56,11 +54,16 @@ export const Login: React.FC = () => {
   if (!auth) auth = "";
 
   return (
-    <div className="split-login-page" style={{ display: "flex", minHeight: "100vh" }}>
+    <Box className="split-login-page" sx={{ display: "flex", minHeight: "100vh", bgcolor: "background.default" }}>
       <LoginHeroPanel />
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", backgroundColor: "var(--b1-surface)" }}>
+      <Box sx={{ flex: 1, display: "flex", flexDirection: "column", bgcolor: "background.paper", minWidth: 0 }}>
+        <Box sx={{ display: { xs: "block", md: "none" }, px: 3, pt: 3 }}>
+          <Typography sx={{ fontWeight: 760, color: "#163A46", fontSize: 22, letterSpacing: "-0.03em" }}>HubPastoral</Typography>
+          <Typography variant="body2" color="text.secondary">Gestão que serve pessoas</Typography>
+        </Box>
+
         {process.env.REACT_APP_STAGE === "demo" && (
-          <Alert severity="error" style={{ margin: "16px 16px 0" }}>
+          <Alert severity="error" sx={{ m: 2, mb: 0 }}>
             <b>{Locale.label("app.login.demoLabel")}</b> {Locale.label("app.login.demoMessage")}
             <br />
             {Locale.label("app.login.demoTestChurch")}
@@ -72,17 +75,17 @@ export const Login: React.FC = () => {
           auth={auth}
           context={context!}
           jwt={jwt}
-          appName="B1Admin"
+          appName="HubPastoral"
           appUrl={window.location.href}
           callbackErrors={errors}
           returnUrl={returnUrl}
           handleRedirect={handleRedirect}
           defaultEmail={process.env.REACT_APP_STAGE === "demo" ? "demo@b1.church" : undefined}
           defaultPassword={process.env.REACT_APP_STAGE === "demo" ? "password" : undefined}
-          showFooter={true}
+          showFooter={false}
           containerStyle={{ minHeight: "auto", flex: 1 }}
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
