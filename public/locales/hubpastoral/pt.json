@@ -1,0 +1,210 @@
+{
+  "common": {
+    "add": "Adicionar",
+    "all": "Todos",
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "confirm": "Confirmar",
+    "delete": "Excluir",
+    "duplicate": "Duplicar",
+    "edit": "Editar",
+    "email": "E-mail",
+    "error": "Erro",
+    "name": "Nome",
+    "notes": "Notas",
+    "pleaseWait": "Aguarde...",
+    "save": "Salvar",
+    "search": "Pesquisar",
+    "settings": "Configurações",
+    "status": "Status",
+    "submit": "Enviar",
+    "update": "Atualizar",
+    "website": "Site",
+    "mobile": "Aplicativo",
+    "more": "Mais",
+    "select": "Selecionar",
+    "labels": "Etiquetas",
+    "sermons": "Sermões",
+    "noAccess": "Você não tem acesso a esta seção.",
+    "days": {
+      "sunday": "Domingo", "monday": "Segunda-feira", "tuesday": "Terça-feira",
+      "wednesday": "Quarta-feira", "thursday": "Quinta-feira",
+      "friday": "Sexta-feira", "saturday": "Sábado"
+    }
+  },
+  "controlPanel": {
+    "serverError": "Algo deu errado. Tente novamente."
+  },
+  "components": {
+    "wrapper": {
+      "dash": "Visão geral",
+      "ppl": "Pessoas",
+      "don": "Contribuições",
+      "serving": "Equipes e tarefas",
+      "set": "Configurações",
+      "att": "Presenças",
+      "groups": "Grupos",
+      "servAdmin": "Administração"
+    },
+    "loginHeroPanel": {
+      "title": "Gestão que serve pessoas",
+      "subtitle": "Uma central simples para organizar a rotina pastoral.",
+      "featurePeople": "Pessoas e famílias",
+      "featurePlanning": "Agenda e presenças",
+      "featureDonations": "Contribuições",
+      "featureWebsite": "Site e comunicação"
+    }
+  },
+  "dashboard": {
+    "dashboardPage": { "dash": "Visão geral" },
+    "sunday": {
+      "firstTime": "Primeira vez", "inTheRoom": "presentes", "lastSunday": "Último domingo",
+      "live": "Ao vivo", "noOrder": "Este plano ainda não tem ordem de culto.",
+      "noPlan": "Não há culto planejado para esta semana.", "rooms": "Salas",
+      "servingSunday": "Servindo no domingo", "thisSunday": "Este domingo",
+      "thisWeeksService": "O culto desta semana aparecerá aqui."
+    },
+    "myTasks": "Minhas tarefas",
+    "allTasks": "Ver todas",
+    "noOpenTasks": "Nenhuma tarefa aberta atribuída a você.",
+    "myGroups": "Meus grupos",
+    "allGroups": "Ver todos",
+    "noGroups": "Você ainda não participa de nenhum grupo.",
+    "needsAttention": {
+      "title": "Precisa de atenção",
+      "approvals": "{count} aprovação(ões) pendente(s)",
+      "joinRequests": "{count} solicitação(ões) para grupo"
+    }
+  },
+  "login": {
+    "continueGoogle": "Continuar com Google",
+    "continueMicrosoft": "Continuar com Microsoft",
+    "createAccount": "Criar conta",
+    "email": "E-mail",
+    "expiredLink": "Este link expirou.",
+    "forgot": "Esqueci minha senha",
+    "goLogin": "Ir para o login",
+    "login": "Entrar",
+    "password": "Senha",
+    "register": "Criar conta",
+    "registerThankYou": "Cadastro realizado. Verifique seu e-mail para confirmar a conta.",
+    "requestLink": "Solicitar novo link",
+    "reset": "Redefinir",
+    "resetInstructions": "Digite seu e-mail para solicitar a redefinição de senha.",
+    "resetPassword": "Redefinir senha",
+    "resetSent": "E-mail de redefinição enviado.",
+    "setPassword": "Definir senha",
+    "signIn": "Entrar",
+    "signInTitle": "Entre no HubPastoral",
+    "verifyPassword": "Confirmar senha",
+    "welcomeBack": "Bem-vindo de volta",
+    "validate": {
+      "email": "Digite um e-mail válido.",
+      "firstName": "Digite seu nome.",
+      "invalid": "E-mail ou senha inválidos.",
+      "lastName": "Digite seu sobrenome.",
+      "password": "Digite sua senha.",
+      "passwordLength": "A senha deve ter pelo menos 8 caracteres.",
+      "passwordMatch": "As senhas não coincidem.",
+      "selectingChurch": "Não foi possível selecionar a igreja. Verifique e tente novamente."
+    }
+  },
+  "wrapper": {
+    "currentChurch": "Igreja atual",
+    "editProfile": "Editar perfil",
+    "logout": "Sair",
+    "messages": "Mensagens",
+    "notifications": "Notificações",
+    "profile": "Perfil",
+    "searchForPerson": "Pesquisar pessoa",
+    "support": "Ajuda",
+    "switchApp": "Trocar aplicativo",
+    "switchChurch": "Trocar igreja"
+  },
+  "attendance": {
+    "attendancePage": {
+      "att": "Presenças",
+      "campus": "Unidade",
+      "serviceTimes": "Horários dos cultos",
+      "subtitle": "Acompanhe a frequência de cultos e grupos"
+    },
+    "attendanceSetup": {
+      "namedAttendanceHelp": "Para registrar presença nominal, abra o grupo e acesse Sessões. Esta página relaciona grupos aos horários dos cultos.",
+      "title": "Estrutura dos cultos"
+    },
+    "headcountEntry": {
+      "confirmDelete": "Tem certeza de que deseja excluir esta contagem?",
+      "count": "Contagem",
+      "date": "Data",
+      "group": "Grupo",
+      "noGroup": "Sem grupo (culto inteiro)",
+      "none": "Nenhuma contagem registrada. Use o formulário para informar quantas pessoas participaram do culto.",
+      "recent": "Contagens recentes",
+      "service": "Culto",
+      "serviceTime": "Horário do culto",
+      "title": "Registrar contagem",
+      "totalOnlyHint": "Esta é uma contagem total, não uma lista nominal. Registre quem participou na aba Sessões do grupo.",
+      "validate": {
+        "count": "Digite um número inteiro igual ou maior que zero.",
+        "date": "Escolha uma data.",
+        "service": "Selecione um culto."
+      },
+      "wholeService": "Todos os horários do culto"
+    },
+    "tabs": {
+      "headcountTrend": "Tendência de contagem"
+    },
+    "serviceEdit": { "campus": "Unidade" }
+  },
+  "calendars": {
+    "calendarEvent": { "edit": "Editar" },
+    "eventReminders": { "messagePlaceholder": "Não perca! {{eventTitle}} começa em breve." }
+  },
+  "groups": {
+    "groupBanner": { "announcements": "Avisos", "discussions": "Conversas" },
+    "groupDetailsEdit": {
+      "announcementsEnabledHelp": "Espaço em que líderes publicam avisos e membros podem ler e reagir.",
+      "discussionsEnabledHelp": "Espaço em que qualquer membro pode publicar mensagens."
+    },
+    "groupSessions": { "assignServiceTimeHint": "Associe este grupo a um horário em Pessoas → Presenças → Configuração." }
+  },
+  "people": {
+    "bulk": {
+      "customField": "Campo personalizado", "customFieldTitle": "Definir campo personalizado",
+      "noCustomFields": "Nenhum campo personalizado de sim ou não foi configurado para pessoas.",
+      "value": "Valor"
+    },
+    "duplicateDialog": {
+      "createAnyway": "Criar mesmo assim", "matchBirthDate": "Data de nascimento",
+      "message": "Uma ou mais pessoas no cadastro podem corresponder a esta pessoa.",
+      "title": "Possível duplicidade", "useExisting": "Usar cadastro existente"
+    }
+  },
+  "settings": {
+    "churchSettingsEdit": { "timeZone": "Fuso horário" },
+    "givingSettingsEdit": { "feesAndStatementsSection": "Taxas e comprovantes", "paymentGatewaySection": "Meio de pagamento" },
+    "mobileAppSettings": { "tabBarNote": "As três primeiras abas aparecem na barra do aplicativo; as demais ficam em Mais." },
+    "rolePermissions": { "filter": "Filtrar permissões" },
+    "visibilityPrefSettingsEdit": { "leaders": "Líderes dos meus grupos e equipe", "staff": "Somente a equipe" }
+  },
+  "tasks": {
+    "accountDeletion": { "viewPerson": "Ver pessoa" },
+    "groupJoinRequest": { "approve": "Aprovar", "decline": "Recusar", "group": "Grupo", "requester": "Solicitante" },
+    "workflowsPage": {
+      "title": "Fluxos de trabalho",
+      "subtitle": "Organize processos recorrentes e acompanhe cada etapa.",
+      "category": "Categoria",
+      "status": "Status",
+      "categories": "Categorias",
+      "workflowCount": "{count} fluxos",
+      "noWorkflows": "Nenhum fluxo de trabalho ainda.",
+      "addWorkflow": "Novo fluxo",
+      "blankWorkflow": "Começar do zero"
+    }
+  },
+  "reports": {
+    "reportsPage": { "reports": "Relatórios" },
+    "reportPage": { "report": "Relatório" }
+  }
+}

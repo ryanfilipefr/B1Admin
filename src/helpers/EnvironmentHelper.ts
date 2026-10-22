@@ -1,5 +1,6 @@
 import { CommonEnvironmentHelper, ApiHelper, Locale } from "@churchapps/apphelper";
 import { EnvironmentHelper as WebsiteEnvironmentHelper } from "@churchapps/apphelper/dist/website/helpers/EnvironmentHelper.js";
+import i18n from "i18next";
 
 export class EnvironmentHelper {
   private static LessonsApi = "";
@@ -40,7 +41,26 @@ export class EnvironmentHelper {
     WebsiteEnvironmentHelper.Common = CommonEnvironmentHelper;
     WebsiteEnvironmentHelper.hasInit = true;
 
-    await Locale.init([`/locales/{{lng}}.json?v=1`, `/apphelper/locales/{{lng}}.json`]);
+    document.documentElement.lang = "pt-BR";
+    const localeBackends = [
+      `/locales/{{lng}}.json?v=1`,
+      `/apphelper/locales/{{lng}}.json`,
+      `/locales/hubpastoral/{{lng}}.json?v=1`
+    ];
+    await Locale.init(localeBackends);
+    if (!i18n.hasResourceBundle("pt", "translation")) {
+      for (const backend of localeBackends) {
+        const url = backend.replace("{{lng}}", "pt");
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          i18n.addResourceBundle("pt", "translation", await response.json(), true, true);
+        } catch (error) {
+          console.warn(`Não foi possível carregar ${url}:`, error);
+        }
+      }
+    }
+    await i18n.changeLanguage("pt");
   };
 
   static initLocal = async () => { };

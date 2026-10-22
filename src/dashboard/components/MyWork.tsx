@@ -1,16 +1,41 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Link as MuiLink, Stack, Typography } from "@mui/material";
+import { AssignmentTurnedInOutlined as TasksIcon, Groups2Outlined as GroupsIcon } from "@mui/icons-material";
 import { useQuery } from "@tanstack/react-query";
 import { Locale, UniqueIdHelper, UserHelper } from "@churchapps/apphelper";
 import { type GroupMemberInterface, type TaskInterface } from "@churchapps/helpers";
 import { NewTask } from "../../serving/tasks/components/NewTask";
-import { RecordHeading, TextAction, VerbRow } from "../../components/ui";
+import { TextAction, VerbRow } from "../../components/ui";
 import { hasAllGroupsAccess } from "../../helpers";
 
-const linkSx = { fontWeight: 600 } as const;
+const linkSx = { fontWeight: 650, color: "text.primary" } as const;
 
-// Home's quiet "mine" lists: my open tasks and my groups as plain text links.
+const WorkSection = ({ icon, title, action, children }: { icon: React.ReactNode; title: string; action?: React.ReactNode; children: React.ReactNode }) => (
+  <Box
+    component="section"
+    sx={{
+      p: { xs: 2, md: 2.5 },
+      borderRadius: 2.5,
+      border: 1,
+      borderColor: "divider",
+      bgcolor: "background.paper",
+      minHeight: 180
+    }}
+  >
+    <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2} sx={{ mb: 2 }}>
+      <Stack direction="row" alignItems="center" spacing={1.25}>
+        <Box sx={{ width: 36, height: 36, display: "grid", placeItems: "center", borderRadius: 2, bgcolor: "var(--b1-selected)", color: "var(--b1-on-selected)" }}>
+          {icon}
+        </Box>
+        <Typography variant="h6">{title}</Typography>
+      </Stack>
+      {action}
+    </Stack>
+    {children}
+  </Box>
+);
+
 export const MyWork: React.FC = () => {
   const personId = UserHelper.person?.id || "";
   const [showAdd, setShowAdd] = useState(false);
@@ -23,23 +48,31 @@ export const MyWork: React.FC = () => {
   const myGroups = groupsQuery.data || [];
 
   return (
-    <Box sx={{ display: "grid", gap: { xs: 4, md: 6 }, gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, alignItems: "start" }}>
-      <Box component="section" aria-labelledby="home-my-tasks" data-testid="home-my-tasks">
-        <RecordHeading id="home-my-tasks" label={Locale.label("dashboard.myTasks", "My tasks")}>
+    <Box sx={{ display: "grid", gap: 2, gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, alignItems: "stretch" }}>
+      <WorkSection
+        icon={<TasksIcon fontSize="small" />}
+        title="Minhas tarefas"
+        action={
           <VerbRow>
-            {!showAdd && <TextAction small onClick={() => setShowAdd(true)} aria-label={Locale.label("tasks.taskList.addTaskAria")} data-testid="add-task-button">{Locale.label("tasks.taskList.addTask")}</TextAction>}
-            <TextAction small to="/serving/tasks" component={Link}>{Locale.label("dashboard.allTasks", "All tasks")}</TextAction>
+            {!showAdd && <TextAction small onClick={() => setShowAdd(true)} aria-label="Adicionar tarefa" data-testid="add-task-button">Adicionar</TextAction>}
+            <TextAction small to="/serving/tasks" component={Link}>Ver todas</TextAction>
           </VerbRow>
-        </RecordHeading>
+        }
+      >
         {showAdd && (
           <Box sx={{ mb: 2 }}>
             <NewTask compact onCancel={() => setShowAdd(false)} onSave={() => { tasksQuery.refetch(); setShowAdd(false); }} />
           </Box>
         )}
         {myTasks.length === 0
-          ? <Typography variant="body2" color="text.secondary">{Locale.label("dashboard.noOpenTasks", "No open tasks assigned to you.")}</Typography>
+          ? (
+            <Box sx={{ py: 1 }}>
+              <Typography variant="body2" color="text.secondary">Nenhuma tarefa aberta atribuída a você.</Typography>
+              <Typography variant="caption" color="text.secondary">Quando algo precisar da sua ação, aparecerá aqui.</Typography>
+            </Box>
+          )
           : (
-            <Stack component="ul" spacing={1} sx={{ listStyle: "none", m: 0, p: 0 }}>
+            <Stack component="ul" spacing={1.25} sx={{ listStyle: "none", m: 0, p: 0 }}>
               {myTasks.map((t) => (
                 <li key={t.id}>
                   <MuiLink component={Link} to={"/serving/tasks/" + t.id} underline="hover" sx={linkSx}>{t.title}</MuiLink>
@@ -47,22 +80,28 @@ export const MyWork: React.FC = () => {
               ))}
             </Stack>
           )}
-      </Box>
+      </WorkSection>
 
-      <Box component="section" aria-labelledby="home-my-groups" data-testid="home-my-groups">
-        <RecordHeading id="home-my-groups" label={Locale.label("dashboard.myGroups", "My Groups")}>
-          {canAllGroups && <TextAction small to="/groups" component={Link}>{Locale.label("dashboard.allGroups", "All groups")}</TextAction>}
-        </RecordHeading>
+      <WorkSection
+        icon={<GroupsIcon fontSize="small" />}
+        title="Meus grupos"
+        action={canAllGroups ? <TextAction small to="/groups" component={Link}>Ver todos</TextAction> : undefined}
+      >
         {myGroups.length === 0
-          ? <Typography variant="body2" color="text.secondary">{Locale.label("dashboard.noGroups", "You're not in any groups yet.")}</Typography>
+          ? (
+            <Box sx={{ py: 1 }}>
+              <Typography variant="body2" color="text.secondary">Você ainda não participa de nenhum grupo.</Typography>
+              <Typography variant="caption" color="text.secondary">Os grupos vinculados ao seu perfil aparecerão aqui.</Typography>
+            </Box>
+          )
           : (
-            <VerbRow sx={{ typography: "body1" }}>
+            <Stack spacing={1.25}>
               {myGroups.map((gm) => (
                 <MuiLink key={gm.id} component={Link} to={"/groups/" + gm.groupId} underline="hover" sx={linkSx}>{gm.group?.name || Locale.label("people.groups.unknownGroup")}</MuiLink>
               ))}
-            </VerbRow>
+            </Stack>
           )}
-      </Box>
+      </WorkSection>
     </Box>
   );
 };

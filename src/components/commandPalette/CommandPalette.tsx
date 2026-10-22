@@ -11,7 +11,7 @@ import "./CommandPalette.css";
 interface PaletteItem { n: string; a?: string[]; t: "nav" | "do" | "person" | "group" | "plan" | "fund" | "jump"; u: string; i?: string; k?: PaletteItem[]; p?: string }
 export interface PaletteMenuItem { url: string; icon?: string; label: string; children?: PaletteMenuItem[] }
 
-const GROUP: Record<PaletteItem["t"], string> = { nav: "Menu", do: "Do", person: "People", group: "Groups", plan: "Plans", fund: "Funds", jump: "Jump" };
+const GROUP: Record<PaletteItem["t"], string> = { nav: "Menu", do: "Ações", person: "Pessoas", group: "Grupos", plan: "Planos", fund: "Fundos", jump: "Páginas" };
 const ORDER: PaletteItem["t"][] = ["nav", "do", "person", "group", "plan", "fund", "jump"];
 const MAX = 12;
 
@@ -58,7 +58,7 @@ export const CommandPalette: React.FC<{ menu: PaletteMenuItem[]; label: string; 
     });
     if (quickActions.length) {
       const k = quickActions.map((q): PaletteItem => ({ n: q.label, t: "do", u: q.url, i: q.icon }));
-      nav.push({ n: "Quick Actions", a: ["create", "add", "new", "set up", "get started"], t: "nav", u: "#quick", i: "bolt", k });
+      nav.push({ n: "Ações rápidas", a: ["criar", "adicionar", "novo", "configurar"], t: "nav", u: "#quick", i: "bolt", k });
     }
     return [...nav, ...server.filter((s) => !menu.some((m) => m.url === s.u))];
   }, [catalog.data, menu, quickActions]);
@@ -179,8 +179,8 @@ export const CommandPalette: React.FC<{ menu: PaletteMenuItem[]; label: string; 
 
   const field = slot && createPortal(
     <div className="om-nav">
-      <RouterLink to="/" className="om-logo" aria-label="Dashboard"><img src="/images/logo-icon.png" alt="" /></RouterLink>
-      <button type="button" className="om-search" onClick={openPalette} data-testid="command-palette-open" aria-label={"Search or jump, current section " + label} title={"Search or jump (" + (isMac ? "⌘" : "Ctrl") + " K)"}>
+      <RouterLink to="/" className="om-logo" aria-label="HubPastoral — visão geral"><span aria-hidden="true">H</span><strong>HubPastoral</strong></RouterLink>
+      <button type="button" className="om-search" onClick={openPalette} data-testid="command-palette-open" aria-label={"Pesquisar ou navegar; seção atual: " + label} title={"Pesquisar ou navegar (" + (isMac ? "⌘" : "Ctrl") + " K)"}>
         <Icon fontSize="small">search</Icon>
         <span className="om-search-label">
           <span data-testid="command-palette-section">{label}</span>
@@ -193,11 +193,11 @@ export const CommandPalette: React.FC<{ menu: PaletteMenuItem[]; label: string; 
   );
 
   const palette = open && createPortal(
-    <div className="om-overlay" role="dialog" aria-modal="true" aria-label="Command palette" data-testid="command-palette" onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}>
+    <div className="om-overlay" role="dialog" aria-modal="true" aria-label="Busca e navegação" data-testid="command-palette" onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}>
       <div className="om-palette">
-        <input ref={inputRef} value={query} onChange={(e) => { setQuery(e.target.value); setActive(0); }} onKeyDown={onInputKey} placeholder="Add a person, find a family, jump…" autoComplete="off" aria-label="Search or jump" />
+        <input ref={inputRef} value={query} onChange={(e) => { setQuery(e.target.value); setActive(0); }} onKeyDown={onInputKey} placeholder="Adicione uma pessoa, encontre uma família ou navegue…" autoComplete="off" aria-label="Pesquisar ou navegar" />
         <div className="om-palette-results" ref={resultsRef}>
-          {shown.length === 0 && <div className="om-group-label">{catalog.isLoading ? "Loading…" : "Nothing for that."}</div>}
+          {shown.length === 0 && <div className="om-group-label">{catalog.isLoading ? "Carregando…" : "Nenhum resultado."}</div>}
           {shown.map((item, idx) => (
             <React.Fragment key={(item.p || "") + item.t + item.u}>
               {query && item.t !== shown[idx - 1]?.t && <div className="om-group-label">{GROUP[item.t]}</div>}
