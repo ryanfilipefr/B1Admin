@@ -5,6 +5,7 @@
     "back": "Voltar",
     "cancel": "Cancelar",
     "close": "Fechar",
+    "confirm": "Confirmar",
     "delete": "Excluir",
     "duplicate": "Duplicar",
     "edit": "Editar",
@@ -21,8 +22,16 @@
     "update": "Atualizar",
     "website": "Site",
     "mobile": "Aplicativo",
+    "more": "Mais",
+    "select": "Selecionar",
+    "labels": "Etiquetas",
     "sermons": "Sermões",
-    "noAccess": "Você não tem acesso a esta seção."
+    "noAccess": "Você não tem acesso a esta seção.",
+    "days": {
+      "sunday": "Domingo", "monday": "Segunda-feira", "tuesday": "Terça-feira",
+      "wednesday": "Quarta-feira", "thursday": "Quinta-feira",
+      "friday": "Sexta-feira", "saturday": "Sábado"
+    }
   },
   "controlPanel": {
     "serverError": "Algo deu errado. Tente novamente."
@@ -49,6 +58,13 @@
   },
   "dashboard": {
     "dashboardPage": { "dash": "Visão geral" },
+    "sunday": {
+      "firstTime": "Primeira vez", "inTheRoom": "presentes", "lastSunday": "Último domingo",
+      "live": "Ao vivo", "noOrder": "Este plano ainda não tem ordem de culto.",
+      "noPlan": "Não há culto planejado para esta semana.", "rooms": "Salas",
+      "servingSunday": "Servindo no domingo", "thisSunday": "Este domingo",
+      "thisWeeksService": "O culto desta semana aparecerá aqui."
+    },
     "myTasks": "Minhas tarefas",
     "allTasks": "Ver todas",
     "noOpenTasks": "Nenhuma tarefa aberta atribuída a você.",
@@ -95,6 +111,8 @@
     }
   },
   "wrapper": {
+    "currentChurch": "Igreja atual",
+    "editProfile": "Editar perfil",
     "logout": "Sair",
     "messages": "Mensagens",
     "notifications": "Notificações",
@@ -107,6 +125,7 @@
   "attendance": {
     "attendancePage": {
       "att": "Presenças",
+      "campus": "Unidade",
       "serviceTimes": "Horários dos cultos",
       "subtitle": "Acompanhe a frequência de cultos e grupos"
     },
@@ -135,12 +154,43 @@
     },
     "tabs": {
       "headcountTrend": "Tendência de contagem"
-    }
+    },
+    "serviceEdit": { "campus": "Unidade" }
   },
   "calendars": {
-    "calendarEvent": { "edit": "Editar" }
+    "calendarEvent": { "edit": "Editar" },
+    "eventReminders": { "messagePlaceholder": "Não perca! {{eventTitle}} começa em breve." }
+  },
+  "groups": {
+    "groupBanner": { "announcements": "Avisos", "discussions": "Conversas" },
+    "groupDetailsEdit": {
+      "announcementsEnabledHelp": "Espaço em que líderes publicam avisos e membros podem ler e reagir.",
+      "discussionsEnabledHelp": "Espaço em que qualquer membro pode publicar mensagens."
+    },
+    "groupSessions": { "assignServiceTimeHint": "Associe este grupo a um horário em Pessoas → Presenças → Configuração." }
+  },
+  "people": {
+    "bulk": {
+      "customField": "Campo personalizado", "customFieldTitle": "Definir campo personalizado",
+      "noCustomFields": "Nenhum campo personalizado de sim ou não foi configurado para pessoas.",
+      "value": "Valor"
+    },
+    "duplicateDialog": {
+      "createAnyway": "Criar mesmo assim", "matchBirthDate": "Data de nascimento",
+      "message": "Uma ou mais pessoas no cadastro podem corresponder a esta pessoa.",
+      "title": "Possível duplicidade", "useExisting": "Usar cadastro existente"
+    }
+  },
+  "settings": {
+    "churchSettingsEdit": { "timeZone": "Fuso horário" },
+    "givingSettingsEdit": { "feesAndStatementsSection": "Taxas e comprovantes", "paymentGatewaySection": "Meio de pagamento" },
+    "mobileAppSettings": { "tabBarNote": "As três primeiras abas aparecem na barra do aplicativo; as demais ficam em Mais." },
+    "rolePermissions": { "filter": "Filtrar permissões" },
+    "visibilityPrefSettingsEdit": { "leaders": "Líderes dos meus grupos e equipe", "staff": "Somente a equipe" }
   },
   "tasks": {
+    "accountDeletion": { "viewPerson": "Ver pessoa" },
+    "groupJoinRequest": { "approve": "Aprovar", "decline": "Recusar", "group": "Grupo", "requester": "Solicitante" },
     "workflowsPage": {
       "title": "Fluxos de trabalho",
       "subtitle": "Organize processos recorrentes e acompanhe cada etapa.",

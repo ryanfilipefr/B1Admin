@@ -1,0 +1,417 @@
+diff --git a/dist/components/FloatingSupport.js b/dist/components/FloatingSupport.js
+index 0720a5bb595def195c36fffc8c727174f574630e..deff50161da153d8d1dcec29347178edb8979596 100644
+--- a/dist/components/FloatingSupport.js
++++ b/dist/components/FloatingSupport.js
+@@ -5,6 +5,6 @@ import React from "react";
+ import { SupportModal } from "./SupportModal";
+ export const FloatingSupport = (props) => {
+     const [showSupport, setShowSupport] = React.useState(false);
+-    return (_jsxs(_Fragment, { children: [_jsx(Fab, { color: "primary", style: { position: "fixed", cursor: "pointer", bottom: "20px", right: (showSupport) ? 47 : 30 }, onClick: () => { setShowSupport(!showSupport); }, "aria-label": "Support", children: _jsx(Icon, { style: { fontSize: 40 }, children: "contact_support" }) }), showSupport && _jsx(SupportModal, { onClose: () => setShowSupport(false), appName: props.appName })] }));
++    return (_jsxs(_Fragment, { children: [_jsx(Fab, { color: "primary", style: { position: "fixed", cursor: "pointer", bottom: "20px", right: (showSupport) ? 47 : 30 }, onClick: () => { setShowSupport(!showSupport); }, "aria-label": "Ajuda", children: _jsx(Icon, { style: { fontSize: 40 }, children: "contact_support" }) }), showSupport && _jsx(SupportModal, { onClose: () => setShowSupport(false), appName: props.appName })] }));
+ };
+ //# sourceMappingURL=FloatingSupport.js.map
+\ No newline at end of file
+diff --git a/dist/components/SupportModal.js b/dist/components/SupportModal.js
+index 69e13420b74c913101ab55b5b7454507defb6811..e5864fd1c18bc0d3799be024236a7173132021b8 100644
+--- a/dist/components/SupportModal.js
++++ b/dist/components/SupportModal.js
+@@ -4,6 +4,6 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Icon, Stack
+ import { Locale } from "../helpers";
+ export const SupportModal = ({ appName = "", onClose }) => {
+     const subject = appName ? `?subject=${appName} Support` : "";
+-    return (_jsx(_Fragment, { children: _jsxs(Dialog, { open: true, onClose: onClose, "aria-labelledby": "support-modal-title", "aria-describedby": "support-modal-content", children: [_jsx(DialogTitle, { id: "support-modal-title", children: "Get Support" }), _jsxs(DialogContent, { id: "support-modal-content", children: [_jsxs(Stack, { direction: "row", alignItems: "center", sx: { flexWrap: "wrap" }, children: [_jsx("b", { children: _jsxs(Stack, { direction: "row", alignItems: "center", mr: "5px", children: [_jsx(Icon, { sx: { marginRight: "5px" }, children: "info" }), " ", Locale.label("support.documentation"), ":"] }) }), " ", _jsx("a", { href: "https://support.churchapps.org", target: "_new", children: "https://support.churchapps.org" })] }), _jsxs(Stack, { direction: "row", alignItems: "center", sx: { flexWrap: "wrap" }, mb: 2, children: [_jsx("b", { children: _jsxs(Stack, { direction: "row", alignItems: "center", mr: "5px", children: [_jsx(Icon, { sx: { marginRight: "5px" }, children: "forum" }), " ", Locale.label("support.discussions"), ":"] }) }), " ", _jsx("a", { href: "https://github.com/orgs/ChurchApps/discussions", target: "_new", children: "https://github.com/orgs/ChurchApps/discussions" })] })] }), _jsx(DialogActions, { sx: { paddingX: "16px", paddingBottom: "12px" }, children: _jsx(Button, { variant: "outlined", onClick: onClose, children: "Close" }) })] }) }));
++    return (_jsx(_Fragment, { children: _jsxs(Dialog, { open: true, onClose: onClose, "aria-labelledby": "support-modal-title", "aria-describedby": "support-modal-content", children: [_jsx(DialogTitle, { id: "support-modal-title", children: "Ajuda do HubPastoral" }), _jsxs(DialogContent, { id: "support-modal-content", children: [_jsxs(Stack, { direction: "row", alignItems: "center", sx: { flexWrap: "wrap" }, children: [_jsx("b", { children: _jsxs(Stack, { direction: "row", alignItems: "center", mr: "5px", children: [_jsx(Icon, { sx: { marginRight: "5px" }, children: "info" }), " ", Locale.label("support.documentation"), ":"] }) }), " ", _jsx("a", { href: "https://support.churchapps.org", target: "_new", children: "https://support.churchapps.org" })] }), _jsxs(Stack, { direction: "row", alignItems: "center", sx: { flexWrap: "wrap" }, mb: 2, children: [_jsx("b", { children: _jsxs(Stack, { direction: "row", alignItems: "center", mr: "5px", children: [_jsx(Icon, { sx: { marginRight: "5px" }, children: "forum" }), " ", Locale.label("support.discussions"), ":"] }) }), " ", _jsx("a", { href: "https://github.com/orgs/ChurchApps/discussions", target: "_new", children: "https://github.com/orgs/ChurchApps/discussions" })] })] }), _jsx(DialogActions, { sx: { paddingX: "16px", paddingBottom: "12px" }, children: _jsx(Button, { variant: "outlined", onClick: onClose, children: "Fechar" }) })] }) }));
+ };
+ //# sourceMappingURL=SupportModal.js.map
+\ No newline at end of file
+diff --git a/dist/components/header/SupportDrawer.js b/dist/components/header/SupportDrawer.js
+index 0f6964fbdda1b3e742c660d5cc8ded38dc6b5a7a..ccd7d4a3011334333904bb9453e8a23ab96a8b87 100644
+--- a/dist/components/header/SupportDrawer.js
++++ b/dist/components/header/SupportDrawer.js
+@@ -8,7 +8,7 @@ export const SupportDrawer = (props) => {
+     const [supportContact, setSupportContact] = useState(null);
+     const [churchLogo, setChurchLogo] = useState(null);
+     const supportHref = "https://support.churchapps.org/";
+-    let currentAppName = props.appName.toLowerCase();
++    let currentAppName = props.appName.toLowerCase() === "hubpastoral" ? "b1Admin" : props.appName.toLowerCase();
+     if (currentAppName === "b1admin")
+         currentAppName = "b1Admin";
+     const validateEmail = (email) => {
+@@ -46,9 +46,9 @@ export const SupportDrawer = (props) => {
+         }
+     };
+     useEffect(loadData, []);
+-    return (_jsxs(_Fragment, { children: [_jsx(IconButton, { sx: { color: "white !important", borderRadius: 2 }, onClick: () => setOpen(true), "aria-label": "Open support help", "data-testid": "support-help-button", children: _jsx(Icon, { sx: { fontSize: "26px !important" }, children: "help" }) }), _jsx(Drawer, { open: open, onClose: () => setOpen(false), anchor: "right", PaperProps: { sx: { width: { xs: "80%", sm: "40%", md: "30%", lg: "20%" } } }, children: _jsxs(Box, { sx: { paddingTop: 10, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "98vh" }, children: [_jsxs(Box, { children: [supportContact ? (_jsx(Box, { sx: { display: "flex", justifyContent: "end", alignItems: "center" }, children: _jsxs(Box, { sx: { cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", marginRight: 2, borderRadius: 2, padding: "7px", backgroundColor: "#e9e9e9" }, component: "div", onClick: () => handleChurchSupportClick(), children: [_jsx(Avatar, { variant: "rounded", src: churchLogo || undefined, sx: { marginRight: 1, bgcolor: "#568bda", width: 25, height: 25 }, children: _jsx(Icon, { fontSize: "small", children: "church" }) }), _jsx(Typography, { sx: { color: "#568bda", fontSize: "13px" }, children: "Support" })] }) })) : null, _jsx(List, { children: _jsx(ListItem, { disablePadding: true, children: _jsxs(ListItemButton, { href: supportHref + currentAppName, target: "_blank", rel: "noopener noreferrer", children: [_jsx(ListItemIcon, { sx: { minWidth: "38px" }, children: _jsx(Icon, { sx: { color: "#568bda" }, children: "article" }) }), _jsx(ListItemText, { sx: { color: "#568bda" }, children: "View Documentation" })] }) }) }), (props?.relatedArticles?.length ?? 0) > 0 ? (_jsxs(Box, { sx: { marginTop: 2 }, children: [_jsx(Typography, { sx: { color: "#568bda", textDecoration: "underline", textUnderlineOffset: 10, textDecorationThickness: 2, marginLeft: 2 }, children: "Features Tour" }), _jsx(List, { sx: { marginTop: 1.5 }, children: props.relatedArticles?.map((a) => {
++    return (_jsxs(_Fragment, { children: [_jsx(IconButton, { sx: { color: "white !important", borderRadius: 2 }, onClick: () => setOpen(true), "aria-label": "Abrir ajuda", "data-testid": "support-help-button", children: _jsx(Icon, { sx: { fontSize: "26px !important" }, children: "help" }) }), _jsx(Drawer, { open: open, onClose: () => setOpen(false), anchor: "right", PaperProps: { sx: { width: { xs: "80%", sm: "40%", md: "30%", lg: "20%" } } }, children: _jsxs(Box, { sx: { paddingTop: 10, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "98vh" }, children: [_jsxs(Box, { children: [supportContact ? (_jsx(Box, { sx: { display: "flex", justifyContent: "end", alignItems: "center" }, children: _jsxs(Box, { sx: { cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", marginRight: 2, borderRadius: 2, padding: "7px", backgroundColor: "#e9e9e9" }, component: "div", onClick: () => handleChurchSupportClick(), children: [_jsx(Avatar, { variant: "rounded", src: churchLogo || undefined, sx: { marginRight: 1, bgcolor: "#245563", width: 25, height: 25 }, children: _jsx(Icon, { fontSize: "small", children: "church" }) }), _jsx(Typography, { sx: { color: "#245563", fontSize: "13px" }, children: "Ajuda" })] }) })) : null, _jsx(List, { children: _jsx(ListItem, { disablePadding: true, children: _jsxs(ListItemButton, { href: supportHref + currentAppName, target: "_blank", rel: "noopener noreferrer", children: [_jsx(ListItemIcon, { sx: { minWidth: "38px" }, children: _jsx(Icon, { sx: { color: "#245563" }, children: "article" }) }), _jsx(ListItemText, { sx: { color: "#245563" }, children: "Ver documentação" })] }) }) }), (props?.relatedArticles?.length ?? 0) > 0 ? (_jsxs(Box, { sx: { marginTop: 2 }, children: [_jsx(Typography, { sx: { color: "#245563", textDecoration: "underline", textUnderlineOffset: 10, textDecorationThickness: 2, marginLeft: 2 }, children: "Conheça os recursos" }), _jsx(List, { sx: { marginTop: 1.5 }, children: props.relatedArticles?.map((a) => {
+                                                 const result = getLabelFromPath(a);
+-                                                return (_jsx(ListItem, { disablePadding: true, children: _jsxs(ListItemButton, { href: supportHref + a, target: "_blank", rel: "noopener noreferrer", children: [_jsx(ListItemIcon, { sx: { minWidth: "35px" }, children: _jsx(Icon, { sx: { color: "#568bda" }, children: "play_circle" }) }), _jsx(ListItemText, { children: _jsx(Typography, { sx: { color: "#568bda", textTransform: "capitalize" }, fontSize: "15px", children: result }) })] }) }));
+-                                            }) })] })) : null] }), _jsxs(Box, { sx: { marginRight: 4, marginLeft: 4, marginTop: "auto" }, children: [_jsx("hr", { style: { color: "#568bda", borderColor: "#568bda", marginLeft: -13, marginRight: -13 } }), _jsxs(Box, { sx: { display: "flex", alignItems: "center", justifyContent: "center", color: "#568bda", marginBottom: 1.5, marginTop: 1.5 }, children: [_jsx(Avatar, { src: "https://avatars.githubusercontent.com/u/74469593?s=200&v=4", variant: "rounded", sx: { width: 25, height: 25, marginRight: 1 }, children: "C" }), _jsx(Typography, { children: "ChurchApps" })] }), _jsxs(Box, { sx: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 4, marginBottom: 1 }, children: [_jsx(Button, { variant: "contained", size: "small", startIcon: _jsx(Icon, { fontSize: "small", children: "mail" }), fullWidth: true, sx: { backgroundColor: "#568bda" }, href: "mailto:support@churchapps.org", children: "Support" }), _jsx(Button, { variant: "contained", size: "small", startIcon: _jsx(Icon, { fontSize: "small", children: "forum" }), fullWidth: true, sx: { backgroundColor: "#568bda" }, href: "https://github.com/orgs/ChurchApps/discussions", target: "_blank", rel: "noopener noreferrer", children: "Forum" })] })] })] }) })] }));
++                                                return (_jsx(ListItem, { disablePadding: true, children: _jsxs(ListItemButton, { href: supportHref + a, target: "_blank", rel: "noopener noreferrer", children: [_jsx(ListItemIcon, { sx: { minWidth: "35px" }, children: _jsx(Icon, { sx: { color: "#245563" }, children: "play_circle" }) }), _jsx(ListItemText, { children: _jsx(Typography, { sx: { color: "#245563", textTransform: "capitalize" }, fontSize: "15px", children: result }) })] }) }));
++                                            }) })] })) : null] }), _jsxs(Box, { sx: { marginRight: 4, marginLeft: 4, marginTop: "auto" }, children: [_jsx("hr", { style: { color: "#245563", borderColor: "#245563", marginLeft: -13, marginRight: -13 } }), _jsxs(Box, { sx: { display: "flex", alignItems: "center", justifyContent: "center", color: "#245563", marginBottom: 1.5, marginTop: 1.5 }, children: [_jsx(Avatar, { src: "/images/hubpastoral-mark.svg", variant: "rounded", sx: { width: 25, height: 25, marginRight: 1 }, children: "C" }), _jsx(Typography, { children: "HubPastoral" })] }), _jsxs(Box, { sx: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 4, marginBottom: 1 }, children: [_jsx(Button, { variant: "contained", size: "small", startIcon: _jsx(Icon, { fontSize: "small", children: "mail" }), fullWidth: true, sx: { backgroundColor: "#245563" }, href: "mailto:support@churchapps.org", children: "Ajuda" }), _jsx(Button, { variant: "contained", size: "small", startIcon: _jsx(Icon, { fontSize: "small", children: "forum" }), fullWidth: true, sx: { backgroundColor: "#245563" }, href: "https://github.com/orgs/ChurchApps/discussions", target: "_blank", rel: "noopener noreferrer", children: "Fórum" })] })] })] }) })] }));
+ };
+ //# sourceMappingURL=SupportDrawer.js.map
+\ No newline at end of file
+diff --git a/dist/login/components/Forgot.js b/dist/login/components/Forgot.js
+index f29bf6e7b0b775c941fd0e766a613b8de5d6647e..a2047f4cab559cddbb0325011a66216d195d084c 100644
+--- a/dist/login/components/Forgot.js
++++ b/dist/login/components/Forgot.js
+@@ -88,14 +88,14 @@ export const Forgot = props => {
+             backgroundColor: "white",
+             border: "1px solid #e5e7eb",
+             boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+-        }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/logo-login.png", alt: "Church Logo", style: {
++        }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/hubpastoral-logo.svg", alt: "HubPastoral", style: {
+                             maxWidth: "100%",
+                             width: "auto",
+                             height: "auto",
+                             maxHeight: "80px",
+                             marginBottom: "16px",
+                             objectFit: "contain"
+-                        } }) }), _jsx(Typography, { component: "h1", sx: { fontSize: "24px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }, children: Locale.label("login.resetPassword") }), _jsx(Typography, { sx: { color: "#6b7280", marginBottom: "32px" }, children: codeSent ? Locale.label("login.enterCodeInstructions") : "Enter your email to receive a verification code" }), errors.length > 0 && (_jsx("div", { style: {
++                        } }) }), _jsx(Typography, { component: "h1", sx: { fontSize: "24px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }, children: Locale.label("login.resetPassword") }), _jsx(Typography, { sx: { color: "#6b7280", marginBottom: "32px" }, children: codeSent ? Locale.label("login.enterCodeInstructions") : "Digite seu e-mail para receber um código de verificação." }), errors.length > 0 && (_jsx("div", { style: {
+                         backgroundColor: "#fef2f2",
+                         border: "1px solid #fecaca",
+                         borderRadius: "6px",
+@@ -107,37 +107,37 @@ export const Forgot = props => {
+                                             backgroundColor: "white",
+                                             "& fieldset": { borderColor: "#d1d5db" },
+                                             "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                            "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                            "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                             "& input": { color: "#111827", fontSize: "16px" }
+                                         },
+                                         "& .MuiInputLabel-root": { display: "none" }
+                                     } })] }), _jsx(Button, { type: "submit", variant: "contained", fullWidth: true, disabled: isSubmitting, sx: {
+-                                backgroundColor: "hsl(218, 85%, 55%)",
++                                backgroundColor: "#163A46",
+                                 color: "white",
+                                 padding: "12px",
+                                 textTransform: "none",
+                                 fontSize: "16px",
+                                 fontWeight: 500,
+                                 borderRadius: "6px",
+-                                "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                "&:hover": { backgroundColor: "#245563" },
+                                 "&:disabled": { backgroundColor: "#9ca3af" }
+-                            }, children: isSubmitting ? "Sending..." : Locale.label("login.reset") }), _jsxs("div", { style: { textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }, children: [_jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); props.registerCallback(); }, style: { background: "none", border: "none", color: "#3b82f6", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, onMouseOver: (e) => e.currentTarget.style.textDecoration = "underline", onMouseOut: (e) => e.currentTarget.style.textDecoration = "none", children: Locale.label("login.register") }), _jsx("span", { style: { fontSize: "14px", color: "#6b7280" }, children: "|" }), _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); props.loginCallback(); }, style: { background: "none", border: "none", color: "#3b82f6", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, onMouseOver: (e) => e.currentTarget.style.textDecoration = "underline", onMouseOut: (e) => e.currentTarget.style.textDecoration = "none", children: Locale.label("login.login") })] })] })) : (_jsxs("form", { onSubmit: submitCode, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsxs(Typography, { variant: "body2", sx: { color: "#6b7280", fontSize: "14px", textAlign: "center" }, children: ["We emailed a 6-digit code to ", _jsx("b", { children: email }), "."] }), _jsx(VerificationCodeInput, { value: code, onChange: setCode, onComplete: verify, disabled: isSubmitting, autoFocus: true }), _jsx(Button, { type: "submit", variant: "contained", fullWidth: true, disabled: isSubmitting || code.length !== 6, sx: {
+-                                backgroundColor: "hsl(218, 85%, 55%)",
++                            }, children: isSubmitting ? "Enviando..." : Locale.label("login.reset") }), _jsxs("div", { style: { textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }, children: [_jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); props.registerCallback(); }, style: { background: "none", border: "none", color: "#245563", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, onMouseOver: (e) => e.currentTarget.style.textDecoration = "underline", onMouseOut: (e) => e.currentTarget.style.textDecoration = "none", children: Locale.label("login.register") }), _jsx("span", { style: { fontSize: "14px", color: "#6b7280" }, children: "|" }), _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); props.loginCallback(); }, style: { background: "none", border: "none", color: "#245563", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, onMouseOver: (e) => e.currentTarget.style.textDecoration = "underline", onMouseOut: (e) => e.currentTarget.style.textDecoration = "none", children: Locale.label("login.login") })] })] })) : (_jsxs("form", { onSubmit: submitCode, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsxs(Typography, { variant: "body2", sx: { color: "#6b7280", fontSize: "14px", textAlign: "center" }, children: ["Enviamos um código de 6 dígitos para ", _jsx("b", { children: email }), "."] }), _jsx(VerificationCodeInput, { value: code, onChange: setCode, onComplete: verify, disabled: isSubmitting, autoFocus: true }), _jsx(Button, { type: "submit", variant: "contained", fullWidth: true, disabled: isSubmitting || code.length !== 6, sx: {
++                                backgroundColor: "#163A46",
+                                 color: "white",
+                                 padding: "12px",
+                                 textTransform: "none",
+                                 fontSize: "16px",
+                                 fontWeight: 500,
+                                 borderRadius: "6px",
+-                                "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                "&:hover": { backgroundColor: "#245563" },
+                                 "&:disabled": { backgroundColor: "#9ca3af" }
+                             }, children: isSubmitting ? Locale.label("common.pleaseWait") : Locale.label("login.verifyCode") }), _jsxs("div", { style: { textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }, children: [_jsx("button", { type: "button", disabled: resendCooldown > 0 || isSubmitting, onClick: resend, style: {
+                                         background: "none",
+                                         border: "none",
+-                                        color: resendCooldown > 0 ? "#9ca3af" : "#3b82f6",
++                                        color: resendCooldown > 0 ? "#9ca3af" : "#245563",
+                                         fontSize: "14px",
+                                         cursor: resendCooldown > 0 ? "default" : "pointer",
+                                         textDecoration: "none"
+-                                    }, children: resendCooldown > 0 ? `Resend code in ${resendCooldown}s` : Locale.label("login.resendCode") }), _jsx("span", { style: { fontSize: "14px", color: "#6b7280" }, children: "|" }), _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); props.loginCallback(); }, style: { background: "none", border: "none", color: "#3b82f6", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, children: Locale.label("login.login") })] })] }))] }) }));
++                                    }, children: resendCooldown > 0 ? `Reenviar código em ${resendCooldown}s` : Locale.label("login.resendCode") }), _jsx("span", { style: { fontSize: "14px", color: "#6b7280" }, children: "|" }), _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); props.loginCallback(); }, style: { background: "none", border: "none", color: "#245563", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, children: Locale.label("login.login") })] })] }))] }) }));
+ };
+ //# sourceMappingURL=Forgot.js.map
+\ No newline at end of file
+diff --git a/dist/login/components/Login.js b/dist/login/components/Login.js
+index 390a4e1e1da4a89218d1987331319d47ddf74e39..43d098e2b3eb232935e5a8023a99725c888fae34 100644
+--- a/dist/login/components/Login.js
++++ b/dist/login/components/Login.js
+@@ -54,7 +54,7 @@ export const Login = ({ mainContainerCssProps = {}, ...props }) => {
+                     border: "1px solid #e5e7eb",
+                     boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+                     ...mainContainerCssProps
+-                }, children: _jsxs(CardContent, { id: "login-content", sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { id: "login-logo", style: { marginBottom: "32px" }, children: _jsx("img", { id: "login-logo-image", src: "/images/logo-login.png", alt: "Church Logo", style: {
++                }, children: _jsxs(CardContent, { id: "login-content", sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { id: "login-logo", style: { marginBottom: "32px" }, children: _jsx("img", { id: "login-logo-image", src: "/images/hubpastoral-logo.svg", alt: "HubPastoral", style: {
+                                     maxWidth: "100%",
+                                     width: "auto",
+                                     height: "auto",
+@@ -69,27 +69,27 @@ export const Login = ({ mainContainerCssProps = {}, ...props }) => {
+                             }, children: Locale.label("login.signInTitle") }), _jsx(Typography, { sx: {
+                                 color: "#6b7280",
+                                 marginBottom: "32px"
+-                            }, children: "Enter your email and password to access your church" }), _jsxs("form", { id: "login-form", onSubmit: (e) => { e.preventDefault(); submitLogin(); }, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "email", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: Locale.label("login.email") }), _jsx(TextField, { id: "login-email-field", name: "email", type: "email", placeholder: Locale.label("login.email"), value: email, onChange: (e) => setEmail(e.target.value), autoFocus: true, required: true, autoComplete: "email", variant: "outlined", fullWidth: true, sx: {
++                            }, children: "Entre com seu e-mail e senha para acessar sua igreja." }), _jsxs("form", { id: "login-form", onSubmit: (e) => { e.preventDefault(); submitLogin(); }, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "login-email-field", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: Locale.label("login.email") }), _jsx(TextField, { id: "login-email-field", name: "email", type: "email", placeholder: Locale.label("login.email"), value: email, onChange: (e) => setEmail(e.target.value), autoFocus: true, required: true, autoComplete: "email", variant: "outlined", fullWidth: true, sx: {
+                                                 "& .MuiOutlinedInput-root": {
+                                                     backgroundColor: "white",
+                                                     "& fieldset": { borderColor: "#d1d5db" },
+                                                     "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                                    "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                                    "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                                     "& input": {
+                                                         color: "#111827",
+                                                         fontSize: "16px"
+                                                     }
+                                                 },
+                                                 "& .MuiInputLabel-root": { display: "none" }
+-                                            } })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px", position: "relative" }, children: [_jsx("label", { htmlFor: "password", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: Locale.label("login.password") }), _jsx(TextField, { id: "login-password-field", name: "password", type: showPassword ? "text" : "password", placeholder: Locale.label("login.password"), value: password, onChange: (e) => setPassword(e.target.value), required: true, autoComplete: "current-password", variant: "outlined", fullWidth: true, InputProps: {
+-                                                endAdornment: (_jsx(InputAdornment, { position: "end", children: _jsx(IconButton, { id: "password-visibility-toggle", "aria-label": "toggle password visibility", onClick: () => setShowPassword(!showPassword), edge: "end", sx: { color: "#6b7280" }, children: showPassword ? _jsx(VisibilityOff, {}) : _jsx(Visibility, {}) }) }))
++                                            } })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px", position: "relative" }, children: [_jsx("label", { htmlFor: "login-password-field", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: Locale.label("login.password") }), _jsx(TextField, { id: "login-password-field", name: "password", type: showPassword ? "text" : "password", placeholder: Locale.label("login.password"), value: password, onChange: (e) => setPassword(e.target.value), required: true, autoComplete: "current-password", variant: "outlined", fullWidth: true, InputProps: {
++                                                endAdornment: (_jsx(InputAdornment, { position: "end", children: _jsx(IconButton, { id: "password-visibility-toggle", "aria-label": "Mostrar ou ocultar senha", onClick: () => setShowPassword(!showPassword), edge: "end", sx: { color: "#6b7280" }, children: showPassword ? _jsx(VisibilityOff, {}) : _jsx(Visibility, {}) }) }))
+                                             }, sx: {
+                                                 "& .MuiOutlinedInput-root": {
+                                                     backgroundColor: "white",
+                                                     paddingRight: "10px",
+                                                     "& fieldset": { borderColor: "#d1d5db" },
+                                                     "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                                    "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                                    "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                                     "& input": {
+                                                         color: "#111827",
+                                                         fontSize: "16px"
+@@ -97,26 +97,26 @@ export const Login = ({ mainContainerCssProps = {}, ...props }) => {
+                                                 },
+                                                 "& .MuiInputLabel-root": { display: "none" }
+                                             } })] }), _jsx(Button, { id: "login-submit-button", type: "submit", variant: "contained", fullWidth: true, disabled: props.isSubmitting, sx: {
+-                                        backgroundColor: "hsl(218, 85%, 55%)",
++                                        backgroundColor: "#163A46",
+                                         color: "white",
+                                         padding: "12px",
+                                         textTransform: "none",
+                                         fontSize: "16px",
+                                         fontWeight: 500,
+                                         borderRadius: "6px",
+-                                        "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                        "&:hover": { backgroundColor: "#245563" },
+                                         "&:disabled": { backgroundColor: "#9ca3af" }
+                                     }, children: props.isSubmitting ? Locale.label("common.pleaseWait") : Locale.label("login.signIn") }), _jsx(SsoButtons, {}), _jsxs("div", { id: "login-links", style: { textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("button", { id: "forgot-password-link", type: "button", onClick: (e) => { e.preventDefault(); props.setShowForgot(true); }, style: {
+                                                 background: "none",
+                                                 border: "none",
+-                                                color: "#3b82f6",
++                                                color: "#245563",
+                                                 fontSize: "14px",
+                                                 cursor: "pointer",
+                                                 textDecoration: "none"
+                                             }, onMouseOver: (e) => e.currentTarget.style.textDecoration = "underline", onMouseOut: (e) => e.currentTarget.style.textDecoration = "none", children: Locale.label("login.forgot") }), _jsxs("div", { style: { fontSize: "14px", color: "#6b7280" }, children: [Locale.label("login.noAcc"), " ", _jsx("button", { id: "register-link", type: "button", onClick: handleShowRegister, style: {
+                                                         background: "none",
+                                                         border: "none",
+-                                                        color: "#3b82f6",
++                                                        color: "#245563",
+                                                         fontSize: "14px",
+                                                         cursor: "pointer",
+                                                         textDecoration: "none"
+@@ -136,7 +136,7 @@ export const Login = ({ mainContainerCssProps = {}, ...props }) => {
+                     fontSize: "14px",
+                     color: "#6b7280"
+                 }, children: [_jsx("span", { style: { marginRight: "8px" }, children: "Ministry that's supported, not sold" }), _jsxs("a", { href: "https://churchapps.org/partner", target: "_blank", rel: "noopener noreferrer", style: {
+-                            color: "#3b82f6",
++                            color: "#245563",
+                             textDecoration: "none",
+                             display: "flex",
+                             alignItems: "center",
+diff --git a/dist/login/components/LoginSetPassword.js b/dist/login/components/LoginSetPassword.js
+index ada6ef28ff92499529c260107792c3322b6eeece..9c1d0ab7895769f11f9efbda668fa8ef88903975 100644
+--- a/dist/login/components/LoginSetPassword.js
++++ b/dist/login/components/LoginSetPassword.js
+@@ -60,7 +60,7 @@ export const LoginSetPassword = props => {
+             backgroundColor: "white",
+             border: "1px solid #e5e7eb",
+             boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+-        }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/logo-login.png", alt: "Church Logo", style: {
++        }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/hubpastoral-logo.svg", alt: "HubPastoral", style: {
+                             maxWidth: "100%",
+                             width: "auto",
+                             height: "auto",
+@@ -75,25 +75,25 @@ export const LoginSetPassword = props => {
+                     }, children: Locale.label("login.setPassword") }), _jsx(Typography, { sx: {
+                         color: "#6b7280",
+                         marginBottom: "32px"
+-                    }, children: linkExpired ? "Your link has expired" : user?.firstName ? `Welcome back ${user.firstName}. Please set your password.` : "Please set your password." }), linkExpired ? (_jsxs("div", { style: { textAlign: "center", display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsx(Typography, { sx: { color: "#dc2626", marginBottom: "16px" }, children: Locale.label("login.expiredLink") }), _jsx(Button, { variant: "contained", fullWidth: true, onClick: submitChangePassword, disabled: props.isSubmitting, sx: {
+-                                backgroundColor: "hsl(218, 85%, 55%)",
++                    }, children: linkExpired ? "Seu link expirou." : user?.firstName ? `Boas-vindas, ${user.firstName}. Defina sua senha.` : "Defina sua senha." }), linkExpired ? (_jsxs("div", { style: { textAlign: "center", display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsx(Typography, { sx: { color: "#dc2626", marginBottom: "16px" }, children: Locale.label("login.expiredLink") }), _jsx(Button, { variant: "contained", fullWidth: true, onClick: submitChangePassword, disabled: props.isSubmitting, sx: {
++                                backgroundColor: "#163A46",
+                                 color: "white",
+                                 padding: "12px",
+                                 textTransform: "none",
+                                 fontSize: "16px",
+                                 fontWeight: 500,
+                                 borderRadius: "6px",
+-                                "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                "&:hover": { backgroundColor: "#245563" },
+                                 "&:disabled": { backgroundColor: "#9ca3af" }
+                             }, children: Locale.label("login.requestLink") })] })) : (_jsxs("form", { onSubmit: (e) => { e.preventDefault(); submitChangePassword(); }, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [user && (_jsxs(Typography, { sx: { color: "#6b7280", textAlign: "center", marginBottom: "8px" }, children: [Locale.label("login.welcomeBack"), " ", user.firstName, "."] })), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "new-password", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: Locale.label("login.setPassword") }), _jsx(TextField, { id: "new-password", name: "new-password", type: showPassword ? "text" : "password", placeholder: Locale.label("login.setPassword"), value: password, onChange: (e) => { e.preventDefault(); setPassword(e.target.value); }, required: true, autoComplete: "new-password", variant: "outlined", fullWidth: true, InputProps: {
+-                                        endAdornment: (_jsx(InputAdornment, { position: "end", children: _jsx(IconButton, { "aria-label": "toggle password visibility", onClick: () => setShowPassword(!showPassword), edge: "end", sx: { color: "#6b7280" }, children: showPassword ? _jsx(VisibilityOff, {}) : _jsx(Visibility, {}) }) }))
++                                        endAdornment: (_jsx(InputAdornment, { position: "end", children: _jsx(IconButton, { "aria-label": "Mostrar ou ocultar senha", onClick: () => setShowPassword(!showPassword), edge: "end", sx: { color: "#6b7280" }, children: showPassword ? _jsx(VisibilityOff, {}) : _jsx(Visibility, {}) }) }))
+                                     }, sx: {
+                                         "& .MuiOutlinedInput-root": {
+                                             backgroundColor: "white",
+                                             paddingRight: "10px",
+                                             "& fieldset": { borderColor: "#d1d5db" },
+                                             "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                            "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                            "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                             "& input": {
+                                                 color: "#111827",
+                                                 fontSize: "16px"
+@@ -101,14 +101,14 @@ export const LoginSetPassword = props => {
+                                         },
+                                         "& .MuiInputLabel-root": { display: "none" }
+                                     } })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "verify-password", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: Locale.label("login.verifyPassword") }), _jsx(TextField, { id: "verify-password", name: "verify-password", type: showPassword ? "text" : "password", placeholder: Locale.label("login.verifyPassword"), value: verifyPassword, onChange: (e) => { e.preventDefault(); setVerifyPassword(e.target.value); }, required: true, autoComplete: "new-password", variant: "outlined", fullWidth: true, InputProps: {
+-                                        endAdornment: (_jsx(InputAdornment, { position: "end", children: _jsx(IconButton, { "aria-label": "toggle password visibility", onClick: () => setShowPassword(!showPassword), edge: "end", sx: { color: "#6b7280" }, children: showPassword ? _jsx(VisibilityOff, {}) : _jsx(Visibility, {}) }) }))
++                                        endAdornment: (_jsx(InputAdornment, { position: "end", children: _jsx(IconButton, { "aria-label": "Mostrar ou ocultar senha", onClick: () => setShowPassword(!showPassword), edge: "end", sx: { color: "#6b7280" }, children: showPassword ? _jsx(VisibilityOff, {}) : _jsx(Visibility, {}) }) }))
+                                     }, sx: {
+                                         "& .MuiOutlinedInput-root": {
+                                             backgroundColor: "white",
+                                             paddingRight: "10px",
+                                             "& fieldset": { borderColor: "#d1d5db" },
+                                             "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                            "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                            "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                             "& input": {
+                                                 color: "#111827",
+                                                 fontSize: "16px"
+@@ -116,14 +116,14 @@ export const LoginSetPassword = props => {
+                                         },
+                                         "& .MuiInputLabel-root": { display: "none" }
+                                     } })] }), _jsx(Button, { type: "submit", variant: "contained", fullWidth: true, disabled: buttonDisabled, sx: {
+-                                backgroundColor: "hsl(218, 85%, 55%)",
++                                backgroundColor: "#163A46",
+                                 color: "white",
+                                 padding: "12px",
+                                 textTransform: "none",
+                                 fontSize: "16px",
+                                 fontWeight: 500,
+                                 borderRadius: "6px",
+-                                "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                "&:hover": { backgroundColor: "#245563" },
+                                 "&:disabled": { backgroundColor: "#9ca3af" }
+                             }, children: buttonDisabled ? Locale.label("common.pleaseWait") : Locale.label("login.signIn") })] }))] }) }));
+ };
+diff --git a/dist/login/components/Register.js b/dist/login/components/Register.js
+index e7727285fa5706e48e362b7a7063d62761892a05..c21ecf14b597ddd67ccd86ca9431ea4d69791661 100644
+--- a/dist/login/components/Register.js
++++ b/dist/login/components/Register.js
+@@ -140,7 +140,7 @@ export const Register = (props) => {
+             setResendCooldown(RESEND_COOLDOWN_SECONDS);
+         }
+         catch (err) {
+-            setErrors([err?.toString() || "Failed to resend code"]);
++            setErrors([err?.toString() || "Não foi possível reenviar o código"]);
+         }
+         finally {
+             setIsSubmitting(false);
+@@ -156,14 +156,14 @@ export const Register = (props) => {
+         try {
+             const resp = await ApiHelper.postAnonymous("/users/verifyCode", { email: user.email, code: submittedCode }, "MembershipApi");
+             if (resp.errors) {
+-                setErrors(resp.errors.map((err) => typeof err === "string" ? err : err.msg || "Invalid code"));
++                setErrors(resp.errors.map((err) => typeof err === "string" ? err : err.msg || "Código inválido"));
+             }
+             else if (resp.authGuid && props.onVerified) {
+                 props.onVerified(resp.authGuid, user.email || "");
+             }
+         }
+         catch (err) {
+-            setErrors([err?.toString() || "Invalid code"]);
++            setErrors([err?.toString() || "Código inválido"]);
+         }
+         finally {
+             setIsSubmitting(false);
+@@ -180,7 +180,7 @@ export const Register = (props) => {
+                 backgroundColor: "white",
+                 border: "1px solid #e5e7eb",
+                 boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+-            }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/logo-login.png", alt: "Church Logo", style: { maxWidth: "100%", width: "auto", height: "auto", maxHeight: "80px", marginBottom: "16px", objectFit: "contain" } }) }), _jsx(Typography, { component: "h1", sx: { fontSize: "24px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }, children: Locale.label("login.enterCode") }), _jsxs(Typography, { sx: { color: "#6b7280", marginBottom: "24px" }, children: ["We emailed a 6-digit code to ", _jsx("b", { children: user.email }), "."] }), errors.length > 0 && (_jsx("div", { style: {
++            }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/hubpastoral-logo.svg", alt: "HubPastoral", style: { maxWidth: "100%", width: "auto", height: "auto", maxHeight: "80px", marginBottom: "16px", objectFit: "contain" } }) }), _jsx(Typography, { component: "h1", sx: { fontSize: "24px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }, children: Locale.label("login.enterCode") }), _jsxs(Typography, { sx: { color: "#6b7280", marginBottom: "24px" }, children: ["Enviamos um código de 6 dígitos para ", _jsx("b", { children: user.email }), "."] }), errors.length > 0 && (_jsx("div", { style: {
+                             backgroundColor: "#fef2f2",
+                             border: "1px solid #fecaca",
+                             borderRadius: "6px",
+@@ -188,24 +188,24 @@ export const Register = (props) => {
+                             textAlign: "left",
+                             marginBottom: "16px"
+                         }, children: errors.map((error) => (_jsx("div", { style: { color: "#dc2626", fontSize: "14px" }, children: error }, error))) })), _jsxs("form", { onSubmit: submitCode, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [_jsx(VerificationCodeInput, { value: code, onChange: setCode, onComplete: verify, disabled: isSubmitting, autoFocus: true }), _jsx(Button, { type: "submit", variant: "contained", fullWidth: true, disabled: isSubmitting || code.length !== 6, sx: {
+-                                    backgroundColor: "hsl(218, 85%, 55%)",
++                                    backgroundColor: "#163A46",
+                                     color: "white",
+                                     padding: "12px",
+                                     textTransform: "none",
+                                     fontSize: "16px",
+                                     fontWeight: 500,
+                                     borderRadius: "6px",
+-                                    "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                    "&:hover": { backgroundColor: "#245563" },
+                                     "&:disabled": { backgroundColor: "#9ca3af" }
+                                 }, children: isSubmitting ? Locale.label("common.pleaseWait") : Locale.label("login.verifyCode") }), _jsxs("div", { style: { textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }, children: [_jsx("button", { type: "button", disabled: resendCooldown > 0 || isSubmitting, onClick: resend, style: {
+                                             background: "none",
+                                             border: "none",
+-                                            color: resendCooldown > 0 ? "#9ca3af" : "#3b82f6",
++                                            color: resendCooldown > 0 ? "#9ca3af" : "#245563",
+                                             fontSize: "14px",
+                                             cursor: resendCooldown > 0 ? "default" : "pointer",
+                                             textDecoration: "none"
+-                                        }, children: resendCooldown > 0 ? `Resend code in ${resendCooldown}s` : Locale.label("login.resendCode") }), _jsx("span", { style: { fontSize: "14px", color: "#6b7280" }, children: "|" }), _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); if (props.loginCallback)
+-                                            props.loginCallback(); }, style: { background: "none", border: "none", color: "#3b82f6", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, children: "Back to sign in" })] })] })] }) }));
++                                        }, children: resendCooldown > 0 ? `Reenviar código em ${resendCooldown}s` : Locale.label("login.resendCode") }), _jsx("span", { style: { fontSize: "14px", color: "#6b7280" }, children: "|" }), _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); if (props.loginCallback)
++                                            props.loginCallback(); }, style: { background: "none", border: "none", color: "#245563", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, children: "Voltar para entrar" })] })] })] }) }));
+     }
+     return (_jsx(Card, { sx: {
+             width: "100%",
+@@ -213,50 +213,50 @@ export const Register = (props) => {
+             backgroundColor: "white",
+             border: "1px solid #e5e7eb",
+             boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+-        }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/logo-login.png", alt: "Church Logo", style: { maxWidth: "100%", width: "auto", height: "auto", maxHeight: "80px", marginBottom: "16px", objectFit: "contain" } }) }), _jsx(Typography, { component: "h1", sx: { fontSize: "24px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }, children: "Create Account" }), _jsx(Typography, { sx: { color: "#6b7280", marginBottom: "32px" }, children: "Create a new account to access your church" }), _jsxs("form", { onSubmit: register, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [matchedChurchName && (_jsxs(Alert, { severity: "info", sx: { textAlign: "left" }, children: ["We found your record at ", _jsx("b", { children: matchedChurchName }), ". Complete registration to link your account."] })), errors.length > 0 && (_jsx("div", { style: {
++        }, children: _jsxs(CardContent, { sx: { textAlign: "center", padding: "32px" }, children: [_jsx("div", { style: { marginBottom: "32px" }, children: _jsx("img", { src: "/images/hubpastoral-logo.svg", alt: "HubPastoral", style: { maxWidth: "100%", width: "auto", height: "auto", maxHeight: "80px", marginBottom: "16px", objectFit: "contain" } }) }), _jsx(Typography, { component: "h1", sx: { fontSize: "24px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }, children: "Criar conta" }), _jsx(Typography, { sx: { color: "#6b7280", marginBottom: "32px" }, children: "Crie sua conta para acessar sua igreja." }), _jsxs("form", { onSubmit: register, style: { display: "flex", flexDirection: "column", gap: "16px" }, children: [matchedChurchName && (_jsxs(Alert, { severity: "info", sx: { textAlign: "left" }, children: ["Encontramos seu cadastro em ", _jsx("b", { children: matchedChurchName }), ". Conclua o cadastro para vincular sua conta."] })), errors.length > 0 && (_jsx("div", { style: {
+                                 backgroundColor: "#fef2f2",
+                                 border: "1px solid #fecaca",
+                                 borderRadius: "6px",
+                                 padding: "12px",
+                                 textAlign: "left"
+-                            }, children: errors.map((error) => (_jsx("div", { style: { color: "#dc2626", fontSize: "14px" }, children: error }, error))) })), _jsxs("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }, children: [_jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "firstName", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: "First Name" }), _jsx(TextField, { id: "firstName", name: "firstName", type: "text", placeholder: "First Name", value: user.firstName, onChange: handleChange, required: true, autoComplete: "given-name", variant: "outlined", fullWidth: true, sx: {
++                            }, children: errors.map((error) => (_jsx("div", { style: { color: "#dc2626", fontSize: "14px" }, children: error }, error))) })), _jsxs("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }, children: [_jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "firstName", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: "Nome" }), _jsx(TextField, { id: "firstName", name: "firstName", type: "text", placeholder: "Nome", value: user.firstName, onChange: handleChange, required: true, autoComplete: "given-name", variant: "outlined", fullWidth: true, sx: {
+                                                 "& .MuiOutlinedInput-root": {
+                                                     backgroundColor: "white",
+                                                     "& fieldset": { borderColor: "#d1d5db" },
+                                                     "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                                    "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                                    "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                                     "& input": { color: "#111827", fontSize: "16px" }
+                                                 },
+                                                 "& .MuiInputLabel-root": { display: "none" }
+-                                            } })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "lastName", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: "Last Name" }), _jsx(TextField, { id: "lastName", name: "lastName", type: "text", placeholder: "Last Name", value: user.lastName, onChange: handleChange, required: true, autoComplete: "family-name", variant: "outlined", fullWidth: true, sx: {
++                                            } })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "lastName", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: "Sobrenome" }), _jsx(TextField, { id: "lastName", name: "lastName", type: "text", placeholder: "Sobrenome", value: user.lastName, onChange: handleChange, required: true, autoComplete: "family-name", variant: "outlined", fullWidth: true, sx: {
+                                                 "& .MuiOutlinedInput-root": {
+                                                     backgroundColor: "white",
+                                                     "& fieldset": { borderColor: "#d1d5db" },
+                                                     "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                                    "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                                    "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                                     "& input": { color: "#111827", fontSize: "16px" }
+                                                 },
+                                                 "& .MuiInputLabel-root": { display: "none" }
+-                                            } })] })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "email", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: "Email" }), _jsx(TextField, { id: "email", name: "email", type: "email", placeholder: "Email", value: user.email, onChange: handleChange, onBlur: (e) => checkEmailForMatch(e.target.value), required: true, autoComplete: "email", variant: "outlined", fullWidth: true, sx: {
++                                            } })] })] }), _jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "8px" }, children: [_jsx("label", { htmlFor: "email", style: { fontSize: "14px", fontWeight: 500, color: "#374151", textAlign: "left" }, children: "E-mail" }), _jsx(TextField, { id: "email", name: "email", type: "email", placeholder: "E-mail", value: user.email, onChange: handleChange, onBlur: (e) => checkEmailForMatch(e.target.value), required: true, autoComplete: "email", variant: "outlined", fullWidth: true, sx: {
+                                         "& .MuiOutlinedInput-root": {
+                                             backgroundColor: "white",
+                                             "& fieldset": { borderColor: "#d1d5db" },
+                                             "&:hover fieldset": { borderColor: "#d1d5db" },
+-                                            "&.Mui-focused fieldset": { borderColor: "#3b82f6" },
++                                            "&.Mui-focused fieldset": { borderColor: "#245563" },
+                                             "& input": { color: "#111827", fontSize: "16px" }
+                                         },
+                                         "& .MuiInputLabel-root": { display: "none" }
+                                     } })] }), _jsx(Button, { type: "submit", variant: "contained", fullWidth: true, disabled: isSubmitting, sx: {
+-                                backgroundColor: "hsl(218, 85%, 55%)",
++                                backgroundColor: "#163A46",
+                                 color: "white",
+                                 padding: "12px",
+                                 textTransform: "none",
+                                 fontSize: "16px",
+                                 fontWeight: 500,
+                                 borderRadius: "6px",
+-                                "&:hover": { backgroundColor: "hsl(218, 85%, 50%)" },
++                                "&:hover": { backgroundColor: "#245563" },
+                                 "&:disabled": { backgroundColor: "#9ca3af" }
+-                            }, children: isSubmitting ? "Please wait..." : "Register" }), _jsx(SsoButtons, {}), _jsx("div", { style: { textAlign: "center" }, children: _jsxs("div", { style: { fontSize: "14px", color: "#6b7280" }, children: ["Already have an account?", " ", _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); if (props.loginCallback)
+-                                            props.loginCallback(); }, style: { background: "none", border: "none", color: "#3b82f6", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, children: "Sign in" })] }) })] })] }) }));
++                            }, children: isSubmitting ? "Aguarde..." : "Criar conta" }), _jsx(SsoButtons, {}), _jsx("div", { style: { textAlign: "center" }, children: _jsxs("div", { style: { fontSize: "14px", color: "#6b7280" }, children: ["Já tem uma conta?", " ", _jsx("button", { type: "button", onClick: (e) => { e.preventDefault(); if (props.loginCallback)
++                                            props.loginCallback(); }, style: { background: "none", border: "none", color: "#245563", fontSize: "14px", cursor: "pointer", textDecoration: "none" }, children: "Entrar" })] }) })] })] }) }));
+ };
+ //# sourceMappingURL=Register.js.map
+\ No newline at end of file

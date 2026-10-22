@@ -1,5 +1,6 @@
 import { CommonEnvironmentHelper, ApiHelper, Locale } from "@churchapps/apphelper";
 import { EnvironmentHelper as WebsiteEnvironmentHelper } from "@churchapps/apphelper/dist/website/helpers/EnvironmentHelper.js";
+import i18n from "i18next";
 
 export class EnvironmentHelper {
   private static LessonsApi = "";
@@ -40,23 +41,26 @@ export class EnvironmentHelper {
     WebsiteEnvironmentHelper.Common = CommonEnvironmentHelper;
     WebsiteEnvironmentHelper.hasInit = true;
 
-    // HubPastoral Admin is a pt-BR product. AppHelper chooses its locale from
-    // navigator.language, so pin the admin shell to Portuguese independently of the
-    // operating system/browser language. Keep this guarded for restricted WebViews.
     document.documentElement.lang = "pt-BR";
-    try {
-      Object.defineProperty(navigator, "language", { configurable: true, get: () => "pt-BR" });
-      Object.defineProperty(navigator, "languages", { configurable: true, get: () => ["pt-BR", "pt"] });
-    } catch {
-      // Some embedded browsers expose non-configurable navigator properties.
-      // The regular pt locale still loads for pt-BR browsers in those environments.
-    }
-
-    await Locale.init([
+    const localeBackends = [
       `/locales/{{lng}}.json?v=1`,
       `/apphelper/locales/{{lng}}.json`,
       `/locales/hubpastoral/{{lng}}.json?v=1`
-    ]);
+    ];
+    await Locale.init(localeBackends);
+    if (!i18n.hasResourceBundle("pt", "translation")) {
+      for (const backend of localeBackends) {
+        const url = backend.replace("{{lng}}", "pt");
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          i18n.addResourceBundle("pt", "translation", await response.json(), true, true);
+        } catch (error) {
+          console.warn(`Não foi possível carregar ${url}:`, error);
+        }
+      }
+    }
+    await i18n.changeLanguage("pt");
   };
 
   static initLocal = async () => { };

@@ -5,7 +5,7 @@ import { Locale } from "@churchapps/apphelper";
 import { type UserInterface, type LoginUserChurchInterface } from "@churchapps/helpers";
 import UserContext from "./UserContext";
 import { LoginPage } from "@churchapps/apphelper/login";
-import { Alert, Box, Typography } from "@mui/material";
+import { Alert, Box } from "@mui/material";
 import { LoginHeroPanel } from "./components/LoginHeroPanel";
 
 export const Login: React.FC = () => {
@@ -57,11 +57,6 @@ export const Login: React.FC = () => {
     <Box className="split-login-page" sx={{ display: "flex", minHeight: "100vh", bgcolor: "background.default" }}>
       <LoginHeroPanel />
       <Box sx={{ flex: 1, display: "flex", flexDirection: "column", bgcolor: "background.paper", minWidth: 0 }}>
-        <Box sx={{ display: { xs: "block", md: "none" }, px: 3, pt: 3 }}>
-          <Typography sx={{ fontWeight: 760, color: "#163A46", fontSize: 22, letterSpacing: "-0.03em" }}>HubPastoral</Typography>
-          <Typography variant="body2" color="text.secondary">Gestão que serve pessoas</Typography>
-        </Box>
-
         {process.env.REACT_APP_STAGE === "demo" && (
           <Alert severity="error" sx={{ m: 2, mb: 0 }}>
             <b>{Locale.label("app.login.demoLabel")}</b> {Locale.label("app.login.demoMessage")}

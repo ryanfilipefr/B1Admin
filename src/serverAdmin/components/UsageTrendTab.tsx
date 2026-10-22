@@ -18,7 +18,7 @@ export const UsageTrendsTab = () => {
           <Typography variant="h3" component="h3" sx={{ mb: 1 }}>{Locale.label("serverAdmin.adminPage.notes")}</Typography>
           <Box component="ul" sx={{ m: 0, pl: 3, typography: "body2", "& li": { mb: 1 } }}>
             <li key="b1admin">
-              <b>B1Admin</b> - {Locale.label("serverAdmin.adminPage.noteOne")}
+              <b>HubPastoral</b> - {Locale.label("serverAdmin.adminPage.noteOne")}
             </li>
             <li key="b1">
               <b>B1</b> - {Locale.label("serverAdmin.adminPage.noteTwo")}

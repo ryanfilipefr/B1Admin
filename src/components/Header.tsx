@@ -188,7 +188,7 @@ export const Header: React.FC = () => {
         secondaryMenuItems={[]}
         secondaryMenuLabel={secondaryMenu.label}
         context={context!}
-        appName={"B1Admin"}
+        appName="HubPastoral"
         onNavigate={handleNavigate}
         userMenuExtras={<ThemeMenuControls />}
       />

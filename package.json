@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "yarn@4.15.0",
   "dependencies": {
-    "@churchapps/apphelper": "^1.8.14",
+    "@churchapps/apphelper": "patch:@churchapps/apphelper@npm%3A1.8.14#~/.yarn/patches/@churchapps-apphelper-npm-1.8.14-ec7686481e.patch",
     "@churchapps/content-providers": "^0.13.0",
     "@churchapps/helpers": "^2.10.0",
     "@mui/icons-material": "^7.3.11",
@@ -19,6 +19,7 @@
     "cropperjs": "^1.6.2",
     "dayjs": "^1.11.20",
     "dompurify": "^3.4.12",
+    "i18next": "26.3.0",
     "i18next-browser-languagedetector": "^8.2.1",
     "jszip": "^3.10.1",
     "mui-tel-input": "^9.0.1",
